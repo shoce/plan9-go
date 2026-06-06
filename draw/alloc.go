@@ -214,10 +214,13 @@ func (i *Image) free() error {
 // if necessary, when the Image is garbage collected,
 // but it is more efficient to be explicit.
 func (i *Image) Free() error {
-	if i == nil {
+	if i == nil || i.Display == nil {
+		// Already freed (free sets Display=nil and clears the finalizer),
+		// or never associated with a display. Guard before locking so a
+		// double free or a finalizer racing an explicit Free can't nil-deref.
 		return nil
 	}
-	if i.Display != nil && i == i.Display.ScreenImage {
+	if i == i.Display.ScreenImage {
 		panic("freeimage of ScreenImage")
 	}
 	i.Display.mu.Lock()
