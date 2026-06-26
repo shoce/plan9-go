@@ -9,7 +9,7 @@ import (
 	"strings"
 	"sync"
 
-	"9fans.net/go/draw/drawfcall"
+	"github.com/shoce/plan9-go/draw/drawfcall"
 )
 
 // Display locking:
