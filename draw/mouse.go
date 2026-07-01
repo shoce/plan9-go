@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/shoce/plan9-go/draw/drawfcall"
+	"github.com/shoce/9fans-go/draw/drawfcall"
 )
 
 // Mouse is the structure describing the current state of the mouse.
